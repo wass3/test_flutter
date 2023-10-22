@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class HomePageTemp extends StatelessWidget {
+  const HomePageTemp({super.key});
 
+  
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text("Pruesdba"),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home Temp'),
       ),
+      body: ListView(),
     );
   }
 }
