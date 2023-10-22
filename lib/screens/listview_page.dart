@@ -10,7 +10,7 @@ class ListaPage extends StatefulWidget {
 }
 
 class _ListaPageState extends State<ListaPage> {
-  final ScrollController _scrollController = new ScrollController();
+  final ScrollController _scrollController = ScrollController();
   final List<int> _listaNumeros = [];
   int _lastItem = 0;
   bool _isLoading = false;
@@ -44,20 +44,35 @@ class _ListaPageState extends State<ListaPage> {
   }
 
   Widget _crearLista() {
-    return ListView.builder(
-      controller: _scrollController,
-      itemCount: _listaNumeros.length,
-      itemBuilder: (BuildContext context, int index) {
-        final imagen = _listaNumeros[index];
-        return FadeInImage(
-          fit: BoxFit.cover,
-          height: 250,
-          image: NetworkImage('https://picsum.photos/500/300?image=$imagen'),
-          placeholder: const AssetImage('assets/jar-loading.gif'),
-        );
-      },
+    return RefreshIndicator(
+      onRefresh: obtenerPagina1,
+      child: ListView.builder(
+        controller: _scrollController,
+        itemCount: _listaNumeros.length,
+        itemBuilder: (BuildContext context, int index) {
+          final imagen = _listaNumeros[index];
+          return FadeInImage(
+            fit: BoxFit.cover,
+            height: 250,
+            image: NetworkImage('https://picsum.photos/500/300?image=$imagen'),
+            placeholder: const AssetImage('assets/jar-loading.gif'),
+          );
+        },
+      ),
     );
   }
+
+  Future<Null> obtenerPagina1() async {
+      const duration = Duration(seconds: 2);
+      setState(() {
+        Timer(duration, () {
+          _listaNumeros.clear();
+          _lastItem++;
+          _agregar10();
+        });
+      });
+      return Future.delayed(duration);
+    }
 
   void _agregar10() {
     for (int i = 1; i < 10; i++) {
