@@ -55,7 +55,7 @@ class CardPage extends StatelessWidget {
         children: [
           const FadeInImage(
             image: NetworkImage(
-              'https://img.freepik.com/free-photo/digital-painting-mountain-with-colorful-tree-foreground_1340-25699.jpg',
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEuPD6ZF3_VbzDeQyCb_KfESCI6kGZbk1mZg&usqp=CAU',
             ),
             placeholder: AssetImage('../../assets/jar-loading.gif'),
             fadeInDuration: Duration(milliseconds: 10),

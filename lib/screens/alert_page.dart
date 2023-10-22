@@ -25,7 +25,6 @@ class AlertPage extends StatelessWidget {
           child: const Text('Mostrar Alerta'),
         ),
       ),
-
     );
   }
   
@@ -35,13 +34,29 @@ class AlertPage extends StatelessWidget {
         //Nos permite cerrar la alerta haciendo click fuera
         barrierDismissible: true,
         builder: (context) {
-          return const AlertDialog(
-            title: Text('Título'),
-            content: Column(
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            title: const Text('Título'),
+            content: const Column(
               mainAxisSize: MainAxisSize.min,
-              children: [Text('Este es el contenido de la caja de la alerta')],
+              children: [
+                Text('Este es el contenido de la caja de la alerta'),
+                FlutterLogo(size: 70)
+              ],
             ),
+            actions: [
+              TextButton(
+                child: const Text('Cancelar'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              TextButton(
+                child: const Text('Ok'),
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            ],
           );
+
         });
   }
 }
