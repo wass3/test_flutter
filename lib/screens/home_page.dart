@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_seminario1/providers/menu_providers.dart';
-import 'package:flutter_seminario1/screens/alert_page.dart';
 import 'package:flutter_seminario1/utils/icono_string_util.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,9 +18,7 @@ class HomePage extends StatelessWidget {
   Widget _lista() {
     return FutureBuilder(
       future: menuProvider.cargarData(),
-      //Argumento opcional, y será la información que tendrá por defecto mientras
-      //no se haya resuelto la promesa
-      // initialData: [],
+      initialData: [],
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
         print('builder');
         print(snapshot.data);

@@ -20,3 +20,4 @@ flutter:
 
 assets:
   -  data/menu_opts.json
+  -  assets/

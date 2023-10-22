@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_seminario1/routes/routes.dart';
 import 'package:flutter_seminario1/screens/alert_page.dart';
-import 'package:flutter_seminario1/screens/avatar_page.dart';
-import 'package:flutter_seminario1/screens/home_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -14,13 +13,12 @@ class MyApp extends StatelessWidget {
       title: 'Componentes APP',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-        routes: <String, WidgetBuilder>{
-          '/': (BuildContext context) => HomePage(),
-          'alert': (BuildContext context) => AlertPage(),
-          'avatar': (BuildContext context) => AvatarPage(),
-// Este es otro método de llamar a las rutas, indicándola en cada clase
-          //AlertPage.pageName: (BuildContext context) => AlertPage(),
-        });
-
+      routes: getApplicationRoutes(),
+      onGenerateRoute: (RouteSettings settings) {
+        print('Ruta llamada: ${settings.name}');
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const AlertPage());
+      },
+    );
  }
 }
