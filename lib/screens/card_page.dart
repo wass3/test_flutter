@@ -64,7 +64,7 @@ class CardPage extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.all(10),
-            child: const Text('Esta es la prueba de que funciona la imagen'),
+            child: const Text('Esta es la prueba de que funciona la imagen', style: TextStyle(color: Colors.black),),
           )
         ],
       ),

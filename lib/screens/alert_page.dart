@@ -42,7 +42,7 @@ class AlertPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text('Este es el contenido de la caja de la alerta'),
-                FlutterLogo(size: 70)
+                FlutterLogo(size: 70),
               ],
             ),
             actions: [
