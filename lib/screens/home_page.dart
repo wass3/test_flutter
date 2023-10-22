@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_seminario1/providers/menu_providers.dart';
+import 'package:flutter_seminario1/screens/alert_page.dart';
+import 'package:flutter_seminario1/utils/icono_string_util.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,19 +17,40 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _lista() {
-    print(menuProvider.opciones);
-
-    return ListView(
-      children: _listaItems(),
+    return FutureBuilder(
+      future: menuProvider.cargarData(),
+      //Argumento opcional, y será la información que tendrá por defecto mientras
+      //no se haya resuelto la promesa
+      // initialData: [],
+      builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+        print('builder');
+        print(snapshot.data);
+        //Crearemos el ListView
+        return ListView(
+          children: _listaItems(snapshot.data, context),
+        );
+      },
     );
+
+
   }
 
-  List<Widget> _listaItems() {
-    return [
-      const ListTile(title: Text('Hola Mundo')),
-      const Divider(),
-      const ListTile(title: Text('Hola Mundo')),
-      const Divider()
-    ];
+  List<Widget> _listaItems(List? data, BuildContext context) {
+    final List<Widget> opciones = [];
+    data?.forEach((opt) {
+      final widgetTemp = ListTile(
+        title: Text(opt['texto']),
+        leading: getIcon(opt['icon']),
+        trailing: const Icon(Icons.keyboard_arrow_right, color: Colors.blue),
+        onTap: () {
+          Navigator.pushNamed(context, opt['ruta']);
+        },
+      );
+      opciones
+        ..add(widgetTemp)
+        ..add(const Divider());
+    });
+
+    return opciones;
   }
 }
